@@ -6,9 +6,12 @@ import org.activiti.engine.TaskService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan
@@ -35,6 +38,16 @@ public class MyApplication {
             }
         };
 
+    }
+
+    @Bean
+    public DataSource database() {
+        return DataSourceBuilder.create()
+                .url("jdbc:mysql://127.0.0.1:3306/activiti-spring-boot?characterEncoding=UTF-8")
+                .username("alfresco")
+                .password("alfresco")
+                .driverClassName("com.mysql.jdbc.Driver")
+                .build();
     }
 
 }

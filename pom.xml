@@ -8,11 +8,21 @@
     <artifactId>spring-boot-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.2.RELEASE</version>
+    </parent>
+
+	<properties>
+		<activiti.version>5.17.0</activiti.version>
+	</properties>
+
     <dependencies>
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>spring-boot-starter-basic</artifactId>
-            <version>5.17.0</version>
+            <version>${activiti.version}</version>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>com.h2database</groupId>-->
@@ -32,14 +42,28 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>1.1.6.RELEASE</version>
+            <version>${spring-boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>spring-boot-starter-jpa</artifactId>
-            <version>5.17.0</version>
+            <version>${activiti.version}</version>
         </dependency>
+        <!-- REST service API needed -->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>        
     </dependencies>
-
-
+    
+    <build>
+        <plugins>
+            <!-- makes spring-boot:run goal available -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>    
 </project>
